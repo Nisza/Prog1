@@ -94,7 +94,7 @@ main ()
         </para>
         <para>
             Tanulságok, tapasztalatok, magyarázat...</para> 
-            
+             <programlisting language="c++"><![CDATA[Futtatás: ./e kód < titkosítandó.txt > új.txt ]]></programlisting>
             <programlisting language="c++"><![CDATA[Program e
 {
 #include <stdio.h>
