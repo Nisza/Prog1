@@ -442,6 +442,42 @@ Mivel az operátorok speciális függvények, és a függvénynevek túlterhelhe
 <para>Előszöris az f2 dob egy kivételt, majd felszabadul az i lokális változó. Felszabadul az f1-ben lefoglalt Fifo fifo objektum, ugyanis meghívódik a destruktora. Végül lefut a catch blokk.
 Ebből látszik, hogy a kivétek dobása és elkapása közt futhat le kód. Fontos szabály, hogy a kivétel dobása és elkapása közt nem szabad újabb kivételt dobni, mert az már kezelhetetlen.</para>
 
+<para> A 211. oldali példája: </para>
+<programlisting language="c++"><![CDATA[
+class MessageHandler
+{
+public:
+  void ProcessMessages;
+  //Következő üzenet beolvasása.
+  while((pMessage = readNextMessage(is)) != NULL)
+  {
+   try
+   {
+    //Kivételt dobhat!
+    pMessage->Process();
+    //...
+    //Ha végeztünk, felszabadítjuk a Message objektumot.
+    delete pMessage;
+   }
+   catch(...)
+   {
+     delete pMessage;
+     throw;
+   }
+  }
+ }
+private:
+  Message* readNextMessage(istream& is)
+ {  ...}
+};
+
+]]></programlisting>
+
+<para>Annak érdekében, hogy ne maradjon rejtett hiba, a catchh képes azt tovább dobni, miután egy utasítást elvégzett.Ha az üzenet feldolgozása során kivételt dobunk, amit a catch elkap, így felszabadítja a lefoglalt memóriát, a kivételt pedig újra dobja.</para>	    
+	    
+	    
+	    
+	    
  </section>
 
 </chapter>            
