@@ -1,0 +1,105 @@
+<revhistory xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <revision>
+        <revnumber>0.0.1</revnumber>
+        <date>2019-02-12</date>
+        <authorinitials>nbatfai</authorinitials>
+        <revremark>
+            Az iniciális dokumentum szerkezetének kialakítása.
+        </revremark>
+    </revision>
+    <revision>
+        <revnumber>0.0.2</revnumber>
+        <date>2019-02-14</date>
+        <authorinitials>nbatfai</authorinitials>
+        <revremark>
+            Inciális feladatlisták összeállítása.
+        </revremark>
+    </revision>    
+    <revision>
+        <revnumber>0.0.3</revnumber>
+        <date>2019-02-16</date>
+        <authorinitials>nbatfai</authorinitials>
+        <revremark>
+            Feladatlisták folytatása.
+            Feltöltés a BHAX csatorna 
+            <link xlink:href="https://gitlab.com/nbatfai/bhax">https://gitlab.com/nbatfai/bhax</link>
+            repójába.
+        </revremark>
+    </revision>
+    <revision>
+        <revnumber>0.0.4</revnumber>
+        <date>2019-02-19</date>
+        <authorinitials>nbatfai</authorinitials>
+        <revremark>
+            Aktualizálás, javítások.
+        </revremark>
+    </revision>
+
+ <revision>
+        <revnumber>0.1.0</revnumber>
+        <date>2019-02-20</date>
+        <authorinitials>szabon</authorinitials>
+        <revremark>
+            Turing 
+        </revremark>
+    </revision>
+<revision>
+        <revnumber>0.2.0</revnumber>
+        <date>2019-03-04</date>
+        <authorinitials>szabon</authorinitials>
+        <revremark>
+            Chomsky
+        </revremark>
+    </revision>
+<revision>
+        <revnumber>0.3.0</revnumber>
+        <date>2019-03-11</date>
+        <authorinitials>szabon</authorinitials>
+        <revremark>
+           Olvasónapló
+        </revremark>
+    </revision>
+<revision>
+        <revnumber>0.4.0</revnumber>
+        <date>2019-03-17</date>
+        <authorinitials>szabon</authorinitials>
+        <revremark>
+            Ceasar
+        </revremark>
+    </revision>
+ <revision>
+        <revnumber>0.5.0</revnumber>
+        <date>2019-03-25</date>
+        <authorinitials>szabon</authorinitials>
+        <revremark>
+            Mandel
+        </revremark>
+    </revision>
+<revision>
+        <revnumber>0.6.0</revnumber>
+        <date>2019-04-01</date>
+        <authorinitials>szabon</authorinitials>
+        <revremark>
+            Welch
+        </revremark>
+    </revision>
+<revision>
+        <revnumber>0.7.0</revnumber>
+        <date>2019-04-08</date>
+        <authorinitials>szabon</authorinitials>
+        <revremark>
+           Conway
+        </revremark>
+    </revision>
+<revision>
+        <revnumber>0.7.0</revnumber>
+        <date>2019-05-09</date>
+        <authorinitials>szabon</authorinitials>
+        <revremark>
+           Befejezés
+        </revremark>
+    </revision>
+
+
+
+</revhistory>

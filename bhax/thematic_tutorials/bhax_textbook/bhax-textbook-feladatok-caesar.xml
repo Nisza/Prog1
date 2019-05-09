@@ -1,0 +1,405 @@
+<chapter xmlns="http://docbook.org/ns/docbook" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xi="http://www.w3.org/2001/XInclude" version="5.0" xml:lang="hu">
+    <info>
+        <title>Helló, Caesar!</title>
+        <keywordset>
+            <keyword/>
+        </keywordset>
+    </info>
+    <section>
+        <title><type>double**</type> háromszögmátrix</title>
+        <para>
+           
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/blob/master/thematic_tutorials/bhax_textbook_IgyNeveldaProgramozod/Caesar/tm.c">https://gitlab.com/nbatfai/bhax/blob/master/thematic_tutorials/bhax_textbook_IgyNeveldaProgramozod/Caesar/tm.c</link>             
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para>  
+        <para>Fordítás/futattás:</para>
+        <para>gcc -Wall tm.c -o tm</para>
+        <para>./tm</para>
+        <programlisting language="c"><![CDATA[
+#include <stdio.h>
+#include <stdlib.h>
+
+int
+main ()
+{
+    int nr = 5;
+    double **tm;
+
+    if ((tm = (double **) malloc (nr * sizeof (double *))) == NULL)
+    {
+        return -1;
+    }
+
+    for (int i = 0; i < nr; ++i)
+    {
+        if ((tm[i] = (double *) malloc ((i + 1) * sizeof (double))) == NULL)
+        {
+            return -1;
+        }
+
+    }
+
+    for (int i = 0; i < nr; ++i)
+        for (int j = 0; j < i + 1; ++j)
+            tm[i][j] = i * (i + 1) / 2 + j;
+
+    for (int i = 0; i < nr; ++i)
+    {
+        for (int j = 0; j < i + 1; ++j)
+            printf ("%f, ", tm[i][j]);
+        printf ("\n");
+    }
+
+    tm[3][0] = 42.0;
+    (*(tm + 3))[1] = 43.0;	// mi van, ha itt hiányzik a külső ()
+    *(tm[3] + 2) = 44.0;
+    *(*(tm + 3) + 3) = 45.0;
+
+    for (int i = 0; i < nr; ++i)
+    {
+        for (int j = 0; j < i + 1; ++j)
+            printf ("%f, ", tm[i][j]);
+        printf ("\n");
+    }
+
+    for (int i = 0; i < nr; ++i)
+        free (tm[i]);
+
+    free (tm);
+
+    return 0;
+}]]></programlisting>
+<para>A mátrix egy n sorból és n oszlopból álló táblázat. Speciáli fajtája a háromszogmátrix, amely négyzetes, vagyis ugyan annyi sora és oszlopa van.
+    Megkülönbözetünk alsó és felső háromszögmátrixokat. Alsó háromszögmátrix estén a főátlóban és alatta vannak az értékes elemek míg felette csupa nulla, míga felsőben fordítva, az értékes elemek a főátlóban és fölöte találhatóak.
+    A nullákat nem kell eltárolnunk, a többi elemet pedig alsó háromszögmátrix esetén sor-, felső háromszögmátrix esetén oszlopfolytonosan tudjuk tárolni.</para>
+          
+    </section>        
+    <section>
+        <title>C EXOR titkosító</title>
+        <para>
+            Írj egy EXOR titkosítót C-ben!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:  <link xlink:href="https://progpater.blog.hu/2011/02/15/felvetelt_hirdet_a_cia?fbclid=IwAR1q4--FgCA_tRhLSTcmWEOVAhhYxVRVefnmn3Ai5TzUixEse1SX5RuB2tY">https://progpater.blog.hu/2011/02/15/felvetelt_hirdet_a_cia?fbclid=IwAR1q4--FgCA_tRhLSTcmWEOVAhhYxVRVefnmn3Ai5TzUixEse1SX5RuB2tY</link>              
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...</para> 
+            
+            <programlisting language="c++"><![CDATA[Program e
+{
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+
+#define MAX_KULCS 100
+#define BUFFER_MERET 256
+
+int
+main (int argc, char **argv)
+{
+
+  char kulcs[MAX_KULCS];
+  char buffer[BUFFER_MERET];
+
+  int kulcs_index = 0;
+  int olvasott_bajtok = 0;
+
+  int kulcs_meret = strlen (argv[1]);
+  strncpy (kulcs, argv[1], MAX_KULCS);
+
+  while ((olvasott_bajtok = read (0, (void *) buffer, BUFFER_MERET)))
+    {
+
+      for (int i = 0; i < olvasott_bajtok; ++i)
+	{
+
+	  buffer[i] = buffer[i] ^ kulcs[kulcs_index];
+	  kulcs_index = (kulcs_index + 1) % kulcs_meret;
+
+	}
+
+      write (1, buffer, olvasott_bajtok);
+
+    }
+}
+
+
+}]]></programlisting>  
+<para>A program az EXOR művelettel titkosít és dekódól is. Ugyanis olvasható szöveg EXOR kulcs = titkosított szöveg, és titkosított szöveg EXOR kulcs = olvasható szöveg. </para>
+    </section>        
+    <section>
+        <title>Java EXOR titkosító</title>
+        <para>
+            Írj egy EXOR titkosítót Java-ban!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:                
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para>            
+    </section>        
+    <section>
+        <title>C EXOR törő</title>
+        <para>
+            Írj egy olyan C programot, amely megtöri az első feladatban előállított titkos szövegeket!
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://progpater.blog.hu/2011/02/15/felvetelt_hirdet_a_cia?fbclid=IwAR1q4--FgCA_tRhLSTcmWEOVAhhYxVRVefnmn3Ai5TzUixEse1SX5RuB2tY">https://progpater.blog.hu/2011/02/15/felvetelt_hirdet_a_cia?fbclid=IwAR1q4--FgCA_tRhLSTcmWEOVAhhYxVRVefnmn3Ai5TzUixEse1SX5RuB2tY</link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para>            
+        <programlisting language="c++"><![CDATA[Program t
+{
+#define MAX_TITKOS 4096
+#define OLVASAS_BUFFER 256
+#define KULCS_MERET 8
+#define _GNU_SOURCE
+
+#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
+
+
+double
+atlagos_szohossz (const char *titkos, int titkos_meret)
+{
+    int sz = 0;
+    for (int i = 0; i < titkos_meret; ++i)
+        if (titkos[i] == ' ')
+            ++sz;
+
+    return (double) titkos_meret / sz;
+}
+
+int
+tiszta_lehet (const char *titkos, int titkos_meret)
+{
+    // a tiszta szoveg valszeg tartalmazza a gyakori magyar szavakat
+    // illetve az átlagos szóhossz vizsgálatával csökkentjük a
+    // potenciális töréseket
+
+    double szohossz = atlagos_szohossz (titkos, titkos_meret);
+
+    return szohossz > 6.0 && szohossz < 9.0
+           && strcasestr (titkos, "hogy") && strcasestr (titkos, "nem")
+           && strcasestr (titkos, "az") && strcasestr (titkos, "ha");
+
+}
+
+void
+exor (const char kulcs[], int kulcs_meret, char titkos[], int titkos_meret)
+{
+
+    int kulcs_index = 0;
+
+    for (int i = 0; i < titkos_meret; ++i)
+    {
+
+        titkos[i] = titkos[i] ^ kulcs[kulcs_index];
+        kulcs_index = (kulcs_index + 1) % kulcs_meret;
+
+    }
+
+}
+
+int
+exor_tores (const char kulcs[], int kulcs_meret, char titkos[],
+            int titkos_meret)
+{
+
+    exor (kulcs, kulcs_meret, titkos, titkos_meret);
+
+    return tiszta_lehet (titkos, titkos_meret);
+
+}
+
+int
+main (void)
+{
+    char titkos[MAX_TITKOS];
+    char *p = titkos;
+    int olvasott_bajtok;
+
+    // titkos fajt berantasa
+    while ((olvasott_bajtok =
+                read (0, (void *) p,
+                      (p - titkos + OLVASAS_BUFFER <
+                       MAX_TITKOS) ? OLVASAS_BUFFER : titkos + MAX_TITKOS - p)))
+        p += olvasott_bajtok;
+
+    // maradek hely nullazasa a titkos bufferben
+    for (int i = 0; i < MAX_TITKOS - (p - titkos); ++i)
+        titkos[p - titkos + i] = '\0';
+
+    // osszes kulcs eloallitasa
+    for (int ii = '0'; ii <= '9'; ++ii)
+        for (int ji = '0'; ji <= '9'; ++ji)
+            for (int ki = '0'; ki <= '9'; ++ki)
+                for (int li = '0'; li <= '9'; ++li)
+                    for (int mi = '0'; mi <= '9'; ++mi)
+                        for (int ni = '0'; ni <= '9'; ++ni)
+                            for (int oi = '0'; oi <= '9'; ++oi)
+                                for (int pi = '0'; pi <= '9'; ++pi)
+                                {
+
+                                    char *kulcs;
+
+                                    if ((kulcs = (char *)malloc(sizeof(char)*KULCS_MERET)) == NULL)
+                                    {
+                                        printf("Memoria (kulcs) faliora\n");
+                                        exit(-1);
+                                    }
+
+                                    kulcs[0] = ii;
+                                    kulcs[1] = ji;
+                                    kulcs[2] = ki;
+                                    kulcs[3] = li;
+                                    kulcs[4] = mi;
+                                    kulcs[5] = ni;
+                                    kulcs[6] = oi;
+                                    kulcs[7] = pi;
+
+                                    exor_tores (kulcs, KULCS_MERET, titkos, p - titkos);
+
+                                    free(kulcs);
+                                }
+
+    return 0;
+}
+
+}]]></programlisting>  
+<para>A program feltételezi,hogy a kulcs 8 számjegy. Előállítja az összes kulcsot, és mindet kipróbálja, az így kapott szövegeken pedig a magyar nyelvre jellemuő tulajdonságokat keres. </para>
+    </section>        
+    <section>
+        <title>Neurális OR, AND és EXOR kapu</title>
+        <para>
+            R
+        </para>
+        <para>
+            Megoldás videó: <link xlink:href="https://youtu.be/Koyw6IH5ScQ">https://youtu.be/Koyw6IH5ScQ</link>
+        </para>
+        <para>
+            Megoldás forrása: <link xlink:href="https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R">https://gitlab.com/nbatfai/bhax/tree/master/attention_raising/NN_R</link>               
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para>            
+    </section>        
+    <section>
+        <title>Hiba-visszaterjesztéses perceptron</title>
+        <para>
+            C++
+        </para>
+        <para>
+            Megoldás videó:
+        </para>
+        <para>
+            Megoldás forrása:   <link xlink:href="https://github.com/nbatfai/nahshon/blob/master/ql.hpp#L64">https://github.com/nbatfai/nahshon/blob/master/ql.hpp#L64</link>             
+        </para>
+        <para>
+            Tanulságok, tapasztalatok, magyarázat...
+        </para>  
+        <para>A feladathoz 3 három fájl szükséges.</para>   
+        <para>mandelpng.cpp , ez előállítja a Mandelbrot halmaz képét, fordítása: g++ mandelpng.cpp -o mandel -lpng . A -lpng kapcsolóhoz szükséges a következő telepítés: sudo apt-get install libpng++-dev. Futtatása: ./mandel mandel.png</para> 
+           <programlisting language="c++"><![CDATA[
+// Mandelbrot png
+// Programozó Páternoszter
+// 
+// Bátfai Norbert, nbatfai@inf.unideb.hu, nbatfai@gmail.com
+// http://progpater.blog.hu/2011/03/26/kepes_egypercesek
+//
+// Fordítás:
+// g++ mandelpng.c++ `libpng-config --ldflags` -o mandelpng
+
+#include <iostream>
+#include <png++/png.hpp>
+
+int main (int argc, char *argv[])
+{
+    if (argc != 2) {
+        std::cout << "Hasznalat: ./mandelpng fajlnev";
+        return -1;
+    }
+    
+    // számítás adatai
+    double a = -2.0, b = .7,  c = -1.35, d = 1.35;
+    int szelesseg = 600, magassag = 600, iteraciosHatar = 1000;
+    
+    // png-t készítünk a png++ csomaggal
+    png::image <png::rgb_pixel> kep (szelesseg, magassag);
+    
+    // a számítás
+    double dx = (b-a)/szelesseg;
+    double dy = (d-c)/magassag;
+    double reC, imC, reZ, imZ, ujreZ, ujimZ;
+    // Hány iterációt csináltunk?
+    int iteracio = 0;
+    std::cout << "Szamitas";
+    // Végigzongorázzuk a szélesség x magasság rácsot:
+    for (int j=0; j<magassag; ++j) {
+        //sor = j;
+        for (int k=0; k<szelesseg; ++k) {
+            // c = (reC, imC) a rács csomópontjainak
+            // megfelelő komplex szám
+            reC = a+k*dx;
+            imC = d-j*dy;
+            // z_0 = 0 = (reZ, imZ)
+            reZ = 0;
+            imZ = 0;
+            iteracio = 0;
+            // z_{n+1} = z_n * z_n + c iterációk
+            // számítása, amíg |z_n| < 2 vagy még
+            // nem értük el a 255 iterációt, ha
+            // viszont elértük, akkor úgy vesszük,
+            // hogy a kiinduláci c komplex számra
+            // az iteráció konvergens, azaz a c a
+            // Mandelbrot halmaz eleme
+            while (reZ*reZ + imZ*imZ < 4 && iteracio < iteraciosHatar) {
+                // z_{n+1} = z_n * z_n + c
+                ujreZ = reZ*reZ - imZ*imZ + reC;
+                ujimZ = 2*reZ*imZ + imC;
+                reZ = ujreZ;
+                imZ = ujimZ;
+                
+                ++iteracio;
+                
+            }
+            
+            kep.set_pixel(k, j, png::rgb_pixel(255-iteracio%256,
+                                               255-iteracio%256, 255-iteracio%256));
+        }
+        std::cout << "." << std::flush;
+    }
+    
+    kep.write (argv[1]);
+    std::cout << argv[1] << " mentve" << std::endl;
+}
+
+}]]></programlisting> 
+
+<para>perc.cpp</para>
+<para>Bemenete az előzőleg létrehozott kép lesz. az ml.hpp pedig egy header fájlja.</para>
+<para>Fordítása: g++ ml.hpp perc.cpp -o perc -lpng -std=c++11  Futtatása: ./perc mandel.png</para>
+    
+    </section>        
+        
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        
+</chapter>                
