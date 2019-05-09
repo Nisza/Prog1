@@ -10,6 +10,13 @@
         <para>
                 
         </para>
+	    <mediaobject>
+                <imageobject>
+                    <imagedata fileref="img/mandel.png" scale="55" />
+                </imageobject>
+                
+            </mediaobject>
+	    
         <para>
             Megoldás videó:
         </para>
